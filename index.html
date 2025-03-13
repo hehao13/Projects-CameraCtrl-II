@@ -20,10 +20,16 @@
             margin: 0;
         }
         
-        .author, .author:visited, .author:hover, .author:active {
-            color: #fff;        
+        .author, .author:visited, .author:active {
+            color: #fff;
             text-decoration: none;
             margin-right: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .author:hover {
+            opacity: 0.6;
+            color: #fff;
         }
         
         .container {
@@ -147,11 +153,21 @@
             border-radius: 8px;
         }
         
-        .vimeo-embed {
+        /* Updated video embedding styles */
+        .video-embed {
             position: relative;
             width: 100%;
             border-radius: 8px;
             overflow: hidden;
+            background-color: #111;
+        }
+        
+        .video-embed video {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+            aspect-ratio: 16 / 9;
+            background-color: #111;
         }
         
         .media-grid {
@@ -175,6 +191,48 @@
             font-size: 14px;
             color: #aaa;
             text-align: center;
+        }
+        
+        /* New styles for side-by-side videos */
+        .video-pair-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .video-pair-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Added fullscreen button similar to first example */
+        .full-screen-wrap {
+            position: relative;
+        }
+        
+        .full-screen-button {
+            width: 24px;
+            height: 24px;
+            border-radius: 12px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            background-image: url(https://cdn.seaweed-apt.com/assets/misc/open.svg);
+            background-size: 12px;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+            cursor: pointer;
+        }
+        
+        .full-screen-wrap:hover .full-screen-button {
+            opacity: 1;
+            pointer-events: all;
         }
         
         @media (max-width: 768px) {
@@ -211,6 +269,12 @@
             .section-title {
                 font-size: 24px;
             }
+            
+            /* Responsive adjustments for side-by-side videos */
+            .video-pair-container {
+                flex-direction: column;
+                gap: 30px;
+            }
         }
     </style>
 </head>
@@ -224,7 +288,7 @@
                     <a class="author" href="https://ceyuan.me/" target="_blank" rel="noopener noreferrer">Ceyuan Yang<sup>2,✝</sup></a>
                     <a class="author" href="https://openreview.net/profile?id=~Shanchuan_Lin1" target="_blank" rel="noopener noreferrer">Shanchuan Lin<sup>2</sup></a>
                     <a class="author" href="https://justimyhxu.github.io" target="_blank" rel="noopener noreferrer">Yinghao Xu<sup>3</sup></a>
-                    <a class="author" href="https://openreview.net/profile?id=~Meng_Wei11" target="_blank" rel="noopener noreferrer">Meng Wei<sup>2</sup></a>
+                    <a class="author" href="https://openreview.net/profile?id=~Meng_Wei11" target="_blank" rel="noopener noreferrer">Meng Wei<sup>4</sup></a>
                     <a class="author" href="https://openreview.net/profile?id=~Liangke_Gui1" target="_blank" rel="noopener noreferrer">Liangke Gui<sup>2</sup></a>
                     <a class="author" href="https://openreview.net/profile?id=~Qi_Zhao8" target="_blank" rel="noopener noreferrer">Qi Zhao<sup>2</sup></a>
                     <a class="author" href="https://stanford.edu/~gordonwz/" target="_blank" rel="noopener noreferrer">Gordon Wetzstein<sup>3</sup></a>
@@ -235,6 +299,7 @@
                     <span class="author" style="padding-top: 0"><sup>1</sup>The Chinese University of Hong Kong</span>
                     <span class="author" style="padding-top: 0"><sup>2</sup>ByteDance Seed</span>
                     <span class="author" style="padding-top: 0"><sup>3</sup>Stanford University</span>
+                    <span class="author" style="padding-top: 0"><sup>4</sup>ByteDance</span>
                 </div>
                 <div class="author" style="padding-top: 0; font-size: 16px;"><sup>✝</sup>Corresponding Author</div>
             </div>
@@ -247,22 +312,20 @@
 
         <h3>Indoor exploration</h3>
         <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:56.25% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064703836?h=5607b8bb5c&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="extension_indoor"></iframe>
-                </div>
+            <div class="video-embed full-screen-wrap">
+                <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/extension_indoor.mp4"></video>
+                <div class="full-screen-button"></div>
             </div>
-            <div class="media-caption">Indoor Exploration</div>
+            <div class="media-caption">Hotel Lobby Exploration</div>
         </div>
 
         <h3>Outdoor exploration</h3>
         <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:56.25% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064704245?h=6581122bfb&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="extension_outdoor"></iframe>
-                </div>
+            <div class="video-embed full-screen-wrap">
+                <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/extension_outdoor.mp4"></video>
+                <div class="full-screen-button"></div>
             </div>
-            <div class="media-caption">Outdoor Exploration</div>
+            <div class="media-caption">Walking in Park</div>
         </div>
 
 
@@ -273,138 +336,191 @@
         <h3>City walking</h3>
         
         <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:56.25% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064703627?h=4a3a071ed2&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="citywalk1"></iframe>
-                </div>
+            <div class="video-embed full-screen-wrap">
+                <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/citywalk1.mp4"></video>
+                <div class="full-screen-button"></div>
             </div>
             <div class="media-caption">European Road</div>
         </div>
         
         <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:56.25% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064703732?h=d20b821844&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="citywalk2"></iframe>
-                </div>
+            <div class="video-embed full-screen-wrap">
+                <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/citywalk2.mp4"></video>
+                <div class="full-screen-button"></div>
             </div>
-            <div class="media-caption">Fruit Market</div>
+            <div class="media-caption">Mediterranean Market Street</div>
         </div>
         
         <h3>19th Century Foggy London</h3>
         
         <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:56.25% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064703500?h=f63806a7a6&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="bw_london1"></iframe>
-                </div>
+            <div class="video-embed full-screen-wrap">
+                <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/bw_london1.mp4"></video>
+                <div class="full-screen-button"></div>
             </div>
             <div class="media-caption">Foggy London Railway Station</div>
         </div>
 
         <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:56.25% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064703572?h=6a27b33c03&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="bw_london2"></iframe>
-                </div>
+            <div class="video-embed full-screen-wrap">
+                <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/bw_london2.mp4"></video>
+                <div class="full-screen-button"></div>
             </div>
-            <div class="video-caption">Street View before Dawn</div>
+            <div class="media-caption">Street View before Dawn</div>
         </div>
 
         <h3>Fantasy Hiking Adventure</h3>
 
         <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:56.25% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064705023?h=32bc90b6b9&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="hiking1"></iframe>
-                </div>
+            <div class="video-embed full-screen-wrap">
+                <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/hiking1.mp4"></video>
+                <div class="full-screen-button"></div>
             </div>
-            <div class="video-caption">Mountain trail with flowing stream</div>
+            <div class="media-caption">Mountain trail with flowing stream</div>
         </div>
 
         <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:56.25% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064705179?h=c2b85b6d47&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="hiking2"></iframe>
-                </div>
+            <div class="video-embed full-screen-wrap">
+                <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/hiking2.mp4"></video>
+                <div class="full-screen-button"></div>
             </div>
-            <div class="video-caption">Cliffside path with waterfall rainbow</div>
+            <div class="media-caption">Cliffside path with waterfall rainbow</div>
         </div>
 
         <h3>Minecraft-Style Gaming Environment</h3>
 
         <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:56.25% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064705597?h=8f33c935f8&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="minecraft1"></iframe>
-                </div>
+            <div class="video-embed full-screen-wrap">
+                <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/minecraft1.mp4"></video>
+                <div class="full-screen-button"></div>
             </div>
-            <div class="video-caption">Voxel village with windmills sunset</div>
+            <div class="media-caption">Voxel village with windmills sunset</div>
         </div>
 
         <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:56.25% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064705735?h=904b4ad481&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="minecraft2"></iframe>
-                </div>
+            <div class="video-embed full-screen-wrap">
+                <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/minecraft2.mp4"></video>
+                <div class="full-screen-button"></div>
             </div>
-            <div class="video-caption">Voxel village with people, sheep</div>
+            <div class="media-caption">Voxel village with people, sheep</div>
         </div>
 
         <h3>Realistic Indoor Settings</h3>
         
         <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:56.25% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064705362?h=85cdfa39a1&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="interior1"></iframe>
-                </div>
+            <div class="video-embed full-screen-wrap">
+                <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/interior1.mp4"></video>
+                <div class="full-screen-button"></div>
             </div>
-            <div class="video-caption">Old cozy library</div>
+            <div class="media-caption">Old cozy library</div>
         </div>
 
         <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:56.25% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064705514?h=e8778c88d0&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="interior2"></iframe>
-                </div>
+            <div class="video-embed full-screen-wrap">
+                <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/interior2.mp4"></video>
+                <div class="full-screen-button"></div>
             </div>
-            <div class="video-caption">Abandoned hospital</div>
+            <div class="media-caption">Abandoned hospital</div>
         </div>
-
-        <!-- The pattern continues for all the other video sections -->
         
-        <div class="section-title">3D reconstruction of generated scenes</div>
+        <div class="section-title">3D reconstruction of generated videos</div>
         
         <p>Our method can generate videos with strong 3D consistency, which enables high-quality 3D reconstruction using the camera-controlled videos.</p>
+
+        <div class="video-pair-container" style="margin-bottom: 10px;">
+            <div class="video-pair-item">
+                <div style="text-align: center; font-size: 18px; font-weight: 500; color: #fff;">Generated Videos</div>
+            </div>
+            <div class="video-pair-item">
+                <div style="text-align: center; font-size: 18px; font-weight: 500; color: #fff;">Reconstruction Point Clouds</div>
+            </div>
+        </div>
         
-        <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:27.12% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064703382?h=0733d5210d&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="3d_scene1"></iframe>
+        <div class="video-pair-container">
+            <div class="video-pair-item">
+                <div class="video-embed full-screen-wrap">
+                    <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/3d_scene1_video.mp4"></video>
+                    <div class="full-screen-button"></div>
                 </div>
             </div>
-            <div class="media-caption"></div>
+            
+            <div class="video-pair-item">
+                <div class="video-embed full-screen-wrap">
+                    <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/3d_scene1.mp4"></video>
+                    <div class="full-screen-button"></div>
+                </div>
+            </div>
         </div>
 
-        <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:47.06% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064703421?h=6bd380de27&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="3d_scene2"></iframe>
+        <div class="video-pair-container">
+            <div class="video-pair-item">
+                <div class="video-embed full-screen-wrap">
+                    <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/3d_scene2_video.mp4"></video>
+                    <div class="full-screen-button"></div>
                 </div>
             </div>
-            <div class="media-caption"></div>
+            
+            <div class="video-pair-item">
+                <div class="video-embed full-screen-wrap">
+                    <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/3d_scene2.mp4"></video>
+                    <div class="full-screen-button"></div>
+                </div>
+            </div>
         </div>
 
-        <div class="media-item">
-            <div class="vimeo-embed">
-                <div style="padding:39.71% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1064703456?h=75de3cbd1f&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="3d_scene3"></iframe>
+        <div class="video-pair-container">
+            <div class="video-pair-item">
+                <div class="video-embed full-screen-wrap">
+                    <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/3d_scene3_video.mp4"></video>
+                    <div class="full-screen-button"></div>
                 </div>
             </div>
-            <div class="media-caption"></div>
+            
+            <div class="video-pair-item">
+                <div class="video-embed full-screen-wrap">
+                    <video playsinline muted loop preload="none" src="https://seaweed.video/projects/cameractrl2/assets/3d_scene3.mp4"></video>
+                    <div class="full-screen-button"></div>
+                </div>
+            </div>
         </div>
     </div>
+    </div>
 
-    <!-- Include Vimeo player API -->
-    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script>
+        // Lazy loading script similar to the first example
+        const lazyLoadObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const video = entry.target;
+                    video.play();
+                    lazyLoadObserver.unobserve(video);
+                }
+            });
+        }, {rootMargin: '1000px'});
+        
+        document.querySelectorAll("video").forEach(video => {
+            lazyLoadObserver.observe(video)
+            video.addEventListener("pointerdown", () => video.play());
+        });
+
+        document.querySelectorAll(".full-screen-wrap").forEach(function(element){
+            var video = element.querySelector("video");
+            if (video) {
+                var button = element.querySelector(".full-screen-button");
+                button.onclick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    video.requestFullscreen();
+                };
+            }
+        });
+
+        document.addEventListener("fullscreenchange", function(event){
+            if (!document.fullscreenElement && event.target instanceof HTMLVideoElement) {
+                event.target.playbackRate = 1.0;
+                event.target.play();
+            }
+        });
+    </script>
 </body>
 </html>
